@@ -35,9 +35,6 @@ const GRAPHQL_REPOS_QUERY = `
     user(login: $login) {
       ${GRAPHQL_REPOS_FIELD}
     }
-    contributedProject: repository(owner: "FoloToy", name: "ai-passport") {
-      stargazerCount
-    }
   }
 `;
 
@@ -77,6 +74,9 @@ const GRAPHQL_STATS_QUERY = `
         totalCount
       }
       ${GRAPHQL_REPOS_FIELD}
+    }
+    contributedProject: repository(owner: "FoloToy", name: "ai-passport") {
+      stargazerCount
     }
   }
 `;
