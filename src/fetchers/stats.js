@@ -35,6 +35,9 @@ const GRAPHQL_REPOS_QUERY = `
     user(login: $login) {
       ${GRAPHQL_REPOS_FIELD}
     }
+    contributedProject: repository(owner: "FoloToy", name: "ai-passport") {
+      stargazerCount
+    }
   }
 `;
 
@@ -321,6 +324,11 @@ const fetchStats = async (
     .reduce((prev, curr) => {
       return prev + curr.stargazers.totalCount;
     }, 0);
+
+  if (username.toLowerCase() === "hwzlovedz") {
+    stats.totalStars +=
+      res.data.data.contributedProject?.stargazerCount || 0;
+  }
 
   stats.rank = calculateRank({
     all_commits: include_all_commits,
